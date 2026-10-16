@@ -270,7 +270,7 @@ window.R = {
       "en": {
         "name": "AstraSeer",
         "yr": "2026",
-        "status": "Web service",
+        "status": "Live",
         "t": "Five astrology systems. One view of you.",
         "d": "Reads Saju, Zi Wei Dou Shu, Western astrology, Vedic astrology and Chiljeong Sayeo at once, and sets what they agree on beside where they differ.",
         "role": "Operated by TOONMILL",
@@ -281,7 +281,7 @@ window.R = {
         ]
       },
       "yr": "2026",
-      "status": "웹 서비스",
+      "status": "운영 중",
       "t": "다섯 가지 점술로, 하나의 나를 보다",
       "d": "사주·자미두수·서양 점성술·인도 점성술·칠정사여를 한 번에 풀어, 다섯 체계가 함께 짚은 모습과 서로 다르게 본 모습을 나란히 보여 줍니다.",
       "role": "TOONMILL 운영",
