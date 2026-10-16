@@ -10,8 +10,8 @@ window.R = {
     "TOONMILL 대표"
   ],
   "line": [
-    "웹툰 〈보이드맨〉을 쓰고 그립니다.",
-    "작가를 위한 도구와 앱도 직접 만들어요."
+    "〈보이드맨〉을 쓰고 그립니다.",
+    "웹툰 밖에서는 AI 도구와 웹 서비스를 만듭니다."
   ],
   "logline": "신들이 지배하는 포스트 아포칼립스.",
   "naver": "https://m.comic.naver.com/webtoon/list?titleId=827173&week=tue",
@@ -70,11 +70,11 @@ window.R = {
       "big": "2022",
       "cap": "대상",
       "t": "네이버웹툰 지상최대공모전 대상",
-      "d": "〈보이드맨〉으로 대상을 받았어요.",
+      "d": "〈보이드맨〉으로 수상했습니다.",
       "en": {
         "cap": "Grand Prize",
         "t": "Grand Prize, NAVER WEBTOON Contest",
-        "d": "Awarded for Void Man in 2022."
+        "d": "Won with Void Man."
       }
     },
     {
@@ -82,22 +82,22 @@ window.R = {
       "big": "2024",
       "cap": "연재",
       "t": "네이버웹툰 화요웹툰 연재 시작",
-      "d": "2024.07.01 1화 공개. 매주 화요일 연재 중이에요.",
+      "d": "2024.07.01 첫 화 공개. 매주 화요일 이어집니다.",
       "en": {
         "cap": "Debut",
         "t": "Void Man debuts on NAVER WEBTOON",
-        "d": "First episode: July 1, 2024. New Korean episodes every Tuesday."
+        "d": "First episode on July 1, 2024. New Korean episodes every Tuesday."
       }
     },
     {
       "key": "langs",
       "big": "5",
       "cap": "개 언어",
-      "t": "다섯 개 언어로",
-      "d": "영어·프랑스어·번체중문은 WEBTOON, 일본어는 LINEマンガ에서 공식 연재해요.",
+      "t": "언어별 공식판",
+      "d": "영어·프랑스어·번체중문은 WEBTOON, 일본어는 LINEマンガ에서 볼 수 있습니다.",
       "en": {
         "cap": "languages",
-        "t": "In five languages",
+        "t": "Official editions",
         "d": "English, French and Traditional Chinese on WEBTOON; Japanese on LINE MANGA."
       }
     }
@@ -173,8 +173,8 @@ window.R = {
         "yr": "Now",
         "status": "Live",
         "t": "AI production tools for webtoon artists",
-        "d": "Twelve tools for webtoon artists, from character sheets and poses to line art, flat colors, layered PSD shading, and background finishing. I developed the entire service.",
-        "role": "TOONMILL CEO · Planning · Development",
+        "d": "From character sheets and poses to line art, flat colors, layered PSD shading and background finishing: twelve tools that take a webtoon panel from start to finish. I lead both planning and development.",
+        "role": "TOONMILL CEO",
         "alts": [
           "ToonMill homepage",
           "ToonMill AI tools dashboard",
@@ -182,9 +182,9 @@ window.R = {
         ]
       },
       "yr": "현재",
-      "status": "서비스 중",
+      "status": "운영 중",
       "t": "웹툰 작가를 위한 AI 제작 도구",
-      "d": "캐릭터 시트부터 포즈, 선화·밑색·명암 레이어(PSD), 배경 후보정까지. 웹툰 한 컷을 만드는 12가지 도구를 하나의 흐름으로 묶었어요. 서비스 전체를 직접 개발했어요.",
+      "d": "캐릭터 시트와 포즈부터 선화·밑색·명암 레이어(PSD), 배경 후보정까지. 웹툰 한 컷이 완성되는 과정을 12가지 도구로 잇습니다. 기획과 개발을 모두 맡고 있습니다.",
       "tools": [
         "캐릭터 시트",
         "포즈",
@@ -193,7 +193,7 @@ window.R = {
         "명암 레이어",
         "배경 후보정"
       ],
-      "role": "TOONMILL 대표 · 기획 · 개발",
+      "role": "TOONMILL 대표",
       "link": [
         "toonmill.net",
         "https://toonmill.net"
@@ -221,7 +221,7 @@ window.R = {
         "yr": "2026",
         "status": "Web service",
         "t": "Five astrology systems. One view of you.",
-        "d": "An app that compares Saju, Zi Wei Dou Shu, Western astrology, Vedic astrology, and Chiljeong Sayeo, showing where their readings agree and differ.",
+        "d": "Reads Saju, Zi Wei Dou Shu, Western astrology, Vedic astrology and Chiljeong Sayeo at once, and sets what they agree on beside where they differ.",
         "role": "Operated by TOONMILL",
         "alts": [
           "AstraSeer homepage",
@@ -232,8 +232,8 @@ window.R = {
       "yr": "2026",
       "status": "웹 서비스",
       "t": "다섯 가지 점술로, 하나의 나를 보다",
-      "d": "사주·자미두수·서양 점성술·인도 점성술·칠정사여를 한 번에 계산해, 같이 짚은 모습과 다르게 본 모습을 나란히 보여 주는 앱.",
-      "role": "툰밀 운영",
+      "d": "사주·자미두수·서양 점성술·인도 점성술·칠정사여를 한 번에 풀어, 다섯 체계가 함께 짚은 모습과 서로 다르게 본 모습을 나란히 보여 줍니다.",
+      "role": "TOONMILL 운영",
       "link": [
         "byeolbyeoljeom.com",
         "https://byeolbyeoljeom.com"
@@ -269,7 +269,7 @@ window.R = {
     },
     {
       "yr": "2016",
-      "t": "광명 국제 판타지 페스티벌 Winner",
+      "t": "광명 국제 판타지 페스티벌 수상",
       "key": "festival",
       "en": {
         "t": "Winner at the international fantasy festival in Gwangmyeong",
@@ -279,7 +279,7 @@ window.R = {
     {
       "yr": "2016",
       "t": "모바일 게임 〈표류소녀〉 참여",
-      "s": "구글 플레이 '올해를 빛낸 혁신적인 게임' 선정",
+      "s": "구글 플레이 ‘올해를 빛낸 혁신적인 게임’ 선정",
       "key": "girl-adrift",
       "en": {
         "t": "Contributed to the mobile game A Girl Adrift",
@@ -337,7 +337,7 @@ window.R = {
       }
     },
     {
-      "yr": "2008—",
+      "yr": "2008—16",
       "t": "국민대학교 조형대학 공업디자인학과",
       "s": "졸업",
       "key": "education",
@@ -351,41 +351,42 @@ window.R = {
   "i18n": {
     "ko": {
       "title": "한건희 KEON — 웹툰 작가",
-      "description": "웹툰 작가 한건희(KEON). 보이드맨 글·그림, 2022 네이버웹툰 지상최대공모전 대상. VIRTICAL·TOONMILL 대표.",
+      "description": "웹툰 작가 한건희(KEON). 〈보이드맨〉 글·그림, 2022 네이버웹툰 지상최대공모전 대상. VIRTICAL·TOONMILL 대표.",
       "backCover": "처음으로",
       "chapterNav": "장 이동",
       "carousel": "한건희 이력",
       "onAir": "매주 화요일, 네이버웹툰 연재 중",
       "who": "웹툰 작가 한건희",
-      "intro": "웹툰 〈보이드맨〉을 쓰고 그립니다.<br>작가를 위한 도구와 앱도 직접 만들어요.",
+      "intro": "〈보이드맨〉을 쓰고 그립니다.<br>웹툰 밖에서는 AI 도구와 웹 서비스를 만듭니다.",
       "virticalRole": "VIRTICAL 대표",
       "toonmillRole": "TOONMILL 대표",
       "readVoid": "〈보이드맨〉 보기 ↗",
-      "follow": "작가 팔로우 ↗",
+      "follow": "인스타그램 ↗",
       "webtoon": "웹툰 작가",
       "workCredit": "〈보이드맨〉 글·그림",
-      "editions": "보이드맨 공식 연재",
+      "editions": "〈보이드맨〉 언어별 공식판",
       "launched": "웹툰 밖의 작업",
       "services": "프로젝트",
-      "servicesHint": "아래로 스크롤 ↓",
+      "servicesHint": "아래로 넘겨 보세요 ↓",
       "serviceNav": "프로젝트 바로가기",
       "serviceScroll": "툰밀과 별별점, 세로로 스크롤",
       "before": "그 전의 이야기",
       "beforeEnd": "그리고, 웹툰 작가가 되었습니다.",
-      "thanks": "새로운 이야기와 좋은 인연을 기다립니다.",
-      "contactTitle": "연재·협업 제안은<br>언제든 반가워요.",
+      "thanks": "끝까지 넘겨 주셔서 고맙습니다.",
+      "contactTitle": "연재·협업 제안을<br>기다립니다.",
       "copyEmail": "이메일 복사",
-      "readMore": "웹툰 보러가기 ↗",
-      "swipeHint": "옆으로 밀어서 넘겨 보세요 →",
-      "desktopHint": "휠이나 ← → 키로도 넘겨요",
+      "readMore": "〈보이드맨〉 보기 ↗",
+      "swipeHint": "옆으로 넘겨 보세요 →",
+      "desktopHint": "휠이나 ← → 키로 넘겨 보세요",
       "previous": "이전 장",
       "next": "다음 장",
       "cover": "표지",
       "byeolName": "별별점",
+      "toonmillName": "툰밀",
       "contact": "연락",
-      "emailSubject": "[보이드맨] 연재·협업 제안",
-      "emailContact": "이메일로 연락하기 ↗",
-      "instagramDescription": "인스타그램 메시지로 연락 주세요.",
+      "emailSubject": "[KEON] 연재·협업 제안",
+      "emailContact": "이메일 보내기 ↗",
+      "instagramDescription": "인스타그램 메시지로 연락해 주세요.",
       "instagramContact": "인스타그램으로 연락하기 ↗",
       "zoom": "그림 크게 보기",
       "close": "닫기 ×",
@@ -398,12 +399,12 @@ window.R = {
       "chapterNav": "Browse chapters",
       "carousel": "Han Keon Hee’s profile",
       "onAir": "New Korean episodes every Tuesday",
-      "who": "Han Keon Hee · Webtoon artist",
-      "intro": "I write and draw <em>Void Man</em>.<br>I also build tools and apps for creators.",
+      "who": "Han Keon Hee, webtoon artist",
+      "intro": "I write and draw <em>Void Man</em>.<br>Beyond the webtoon, I build AI tools and web services.",
       "virticalRole": "VIRTICAL CEO",
       "toonmillRole": "TOONMILL CEO",
       "readVoid": "Read Void Man ↗",
-      "follow": "Follow the artist ↗",
+      "follow": "Instagram ↗",
       "webtoon": "Webtoon artist",
       "workCredit": "Void Man · Story & Art",
       "editions": "Official Void Man editions",
@@ -414,19 +415,20 @@ window.R = {
       "serviceScroll": "ToonMill and AstraSeer, scroll vertically",
       "before": "Before webtoons",
       "beforeEnd": "And then, I became a webtoon artist.",
-      "thanks": "For new stories and new connections.",
-      "contactTitle": "New stories.<br>New collaborations.",
+      "thanks": "Thank you for turning to the last card.",
+      "contactTitle": "Open to new series<br>and collaborations.",
       "copyEmail": "Copy email",
-      "readMore": "Read the webtoon ↗",
+      "readMore": "Read Void Man ↗",
       "swipeHint": "Swipe to turn the card →",
-      "desktopHint": "Scroll or use ← → to browse",
+      "desktopHint": "Scroll or press ← → to turn",
       "previous": "Previous card",
       "next": "Next card",
       "cover": "Cover",
       "byeolName": "AstraSeer",
+      "toonmillName": "ToonMill",
       "contact": "Contact",
-      "emailSubject": "[Void Man] Publishing / collaboration inquiry",
-      "emailContact": "Get in touch by email ↗",
+      "emailSubject": "[KEON] Series / collaboration proposal",
+      "emailContact": "Send an email ↗",
       "instagramDescription": "Send me a message on Instagram.",
       "instagramContact": "Message me on Instagram ↗",
       "zoom": "View the artwork",
