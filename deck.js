@@ -3,28 +3,98 @@ window.h = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<'
 window.ext = (url) => `href="${h(url)}" target="_blank" rel="noopener noreferrer"`;
 window.STAR = '<svg class="star" viewBox="0 0 130 130" aria-hidden="true"><path d="M64 8L69 48L99 20L79 57L121 52L83 69L111 99L74 80L80 122L62 83L33 110L49 74L8 79L46 61L18 32L56 48Z"/></svg>';
 // 그림 종이 한 장(누르면 크게 보기). window.print는 브라우저 인쇄라 이름을 paper로 씀
-window.paper = (src, alt, { cls = '', label = '', pos = '', full = src } = {}) =>
-  `<button type="button" class="print sheet ${cls}" data-full="${h(full)}"><span class="pic"><img src="${h(src)}" alt="${h(alt)}"${pos ? ` style="object-position:${h(pos)}"` : ''}></span>${label ? `<span class="label">${h(label)}</span>` : ''}</button>`;
+// data: 버튼에 붙일 data-* 값(steps, video, poster, caption이면 확대 창이 그린 과정을 재생), aria: 버튼 이름
+window.paper = (src, alt, { cls = '', label = '', pos = '', full = src, data = {}, aria = '' } = {}) =>
+  `<button type="button" class="print sheet ${cls}" data-full="${h(full)}"${Object.entries(data).map(([k, v]) => ` data-${k}="${h(v)}"`).join('')}${aria ? ` aria-label="${h(aria)}"` : ''}><span class="pic"><img src="${h(src)}" alt="${h(alt)}"${pos ? ` style="object-position:${h(pos)}"` : ''}></span>${label ? `<span class="label">${h(label)}</span>` : ''}</button>`;
 
+// 확대 창. 보통은 그림 한 장. 누른 그림에 data-steps(단계 그림 목록)나 data-video가 있으면 그린 과정을 재생.
+// 단계 그림은 앞 단계 위에 다음 단계가 겹쳐 나타나고(각 1초, 완성본에서 2.5초 뒤 처음부터), 영상은 소리 없이 반복.
+// 움직임 줄이기에서는 저절로 시작하지 않고 완성본과 재생 버튼만 보임. 문구는 app.js가 언어에 맞게 LB에 넣음.
+window.LB = { zoom: '그림 크게 보기', pause: '멈춤', play: '재생' };
 (() => {
   const lb = document.createElement('dialog');
   lb.className = 'lb';
   lb.setAttribute('aria-label', '크게 보기');
-  lb.innerHTML = '<button type="button" class="lb-close">닫기 ×</button><img alt="">';
+  lb.innerHTML = '<button type="button" class="lb-close">닫기 ×</button><img alt=""><div class="lb-play" hidden><div class="lb-stage"></div><div class="lb-ctl"><span class="lb-bar" aria-hidden="true"></span><span class="lb-n"></span><button type="button" class="lb-toggle"></button></div><p class="lb-cap"></p></div>';
   document.body.append(lb);
-  const img = lb.querySelector('img');
-  let opener = null;
+  const part = (s) => lb.querySelector(s);
+  const img = part(':scope > img'), box = part('.lb-play'), stage = part('.lb-stage'), bar = part('.lb-bar');
+  const count = part('.lb-n'), toggle = part('.lb-toggle'), cap = part('.lb-cap');
+  const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let opener = null, run = null;
+  const label = () => { toggle.textContent = run && run.playing() ? LB.pause : LB.play; };
+
+  function steps(list) {
+    stage.innerHTML = list.map((src) => `<img src="${h(src)}" alt="">`).join('');
+    bar.innerHTML = list.map(() => '<i></i>').join('');
+    const frames = [...stage.children], segs = [...bar.children], last = frames.length - 1;
+    let at = last, timer = 0, on = false;
+    const show = (k) => {
+      at = k;
+      frames.forEach((f, i) => f.classList.toggle('on', i <= k));
+      segs.forEach((g, i) => g.classList.toggle('on', i <= k));
+      count.textContent = `${k + 1} / ${frames.length}`;
+    };
+    const next = () => { timer = setTimeout(() => { show(at === last ? 0 : at + 1); next(); }, at === last ? 2500 : 1000); };
+    show(last);
+    const r = {
+      play() { clearTimeout(timer); on = true; if (at === last) show(0); next(); label(); },
+      pause() { clearTimeout(timer); on = false; label(); },
+      playing: () => on,
+      stop() { clearTimeout(timer); on = false; },
+    };
+    // 완성본(표지에서 이미 받은 그림)을 보여 주는 동안 나머지 단계를 받고 나서 처음부터 시작
+    if (!still()) Promise.all(frames.map((f) => f.decode().catch(() => {}))).then(() => { if (run === r) r.play(); });
+    return r;
+  }
+
+  function video(src, poster) {
+    stage.innerHTML = `<video src="${h(src)}" poster="${h(poster)}" muted playsinline loop preload="auto"></video>`;
+    bar.innerHTML = '<i class="run"></i>';
+    count.textContent = '';
+    const v = stage.firstChild, line = bar.firstChild;
+    v.muted = true;
+    v.addEventListener('timeupdate', () => line.style.setProperty('--p', v.duration ? (v.currentTime / v.duration).toFixed(3) : 0));
+    v.addEventListener('play', label);
+    v.addEventListener('pause', label);
+    const r = {
+      play() { v.play().catch(label); },
+      pause() { v.pause(); },
+      playing: () => !v.paused,
+      stop() { v.pause(); v.removeAttribute('src'); v.load(); },
+    };
+    if (!still()) r.play();
+    return r;
+  }
+
   document.addEventListener('click', (e) => {
     const t = e.target.closest('[data-full]');
     if (!t) return;
     opener = t;
-    img.src = t.dataset.full;
-    img.alt = (t.querySelector('img') || {}).alt || '';
+    const d = t.dataset, process = !!(d.steps || d.video);
+    img.hidden = process;
+    box.hidden = !process;
+    lb.setAttribute('aria-label', process && d.caption ? d.caption : LB.zoom);
+    if (process) {
+      cap.textContent = d.caption || '';
+      run = d.steps ? steps(d.steps.split(' ')) : video(d.video, d.poster || '');
+      label();
+    } else {
+      img.src = d.full;
+      img.alt = (t.querySelector('img') || {}).alt || '';
+    }
     lb.showModal();
   });
-  lb.querySelector('.lb-close').addEventListener('click', () => lb.close());
+  toggle.addEventListener('click', () => { if (!run) return; if (run.playing()) run.pause(); else run.play(); });
+  stage.addEventListener('click', () => toggle.click());
+  part('.lb-close').addEventListener('click', () => lb.close());
   lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
-  lb.addEventListener('close', () => { img.removeAttribute('src'); if (opener) opener.focus({ preventScroll: true }); });
+  lb.addEventListener('close', () => {
+    if (run) { run.stop(); run = null; }
+    stage.innerHTML = ''; bar.innerHTML = ''; count.textContent = ''; cap.textContent = '';
+    img.removeAttribute('src');
+    if (opener) opener.focus({ preventScroll: true });
+  });
 })();
 
 // 하나씩 넘겨 보는 카드 묶음. 손가락으로 밀기(브라우저 가로 스크롤), 마우스로 끌기, 이전/다음 버튼, 이름 버튼, 방향키.

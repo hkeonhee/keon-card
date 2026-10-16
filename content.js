@@ -64,6 +64,57 @@ window.R = {
       ]
     }
   },
+  "process": {
+    "gatekeeper": {
+      "thumb": "assets/gatekeeper-step-05.webp",
+      "alt": "문지기 완성 원화",
+      "caption": "문지기를 그린 과정",
+      "open": "문지기를 그린 과정 보기",
+      "steps": [
+        "assets/gatekeeper-step-01.webp",
+        "assets/gatekeeper-step-02.webp",
+        "assets/gatekeeper-step-03.webp",
+        "assets/gatekeeper-step-04.webp",
+        "assets/gatekeeper-step-05.webp"
+      ],
+      "en": {
+        "alt": "Gatekeeper, finished artwork",
+        "caption": "How Gatekeeper was drawn",
+        "open": "Watch how Gatekeeper was drawn"
+      }
+    },
+    "agni": {
+      "thumb": "assets/agni-step-05.webp",
+      "alt": "아그니 완성 원화",
+      "caption": "아그니를 그린 과정",
+      "open": "아그니를 그린 과정 보기",
+      "steps": [
+        "assets/agni-step-01.webp",
+        "assets/agni-step-02.webp",
+        "assets/agni-step-03.webp",
+        "assets/agni-step-04.webp",
+        "assets/agni-step-05.webp"
+      ],
+      "en": {
+        "alt": "Agni, finished artwork",
+        "caption": "How Agni was drawn",
+        "open": "Watch how Agni was drawn"
+      }
+    },
+    "hig": {
+      "thumb": "assets/hig-video-poster.jpg",
+      "alt": "히그 완성 원화",
+      "caption": "히그를 그린 과정",
+      "open": "히그를 그린 과정 보기",
+      "video": "assets/hig-timelapse-web.mp4",
+      "poster": "assets/hig-video-poster.jpg",
+      "en": {
+        "alt": "Hig, finished artwork",
+        "caption": "How Hig was drawn",
+        "open": "Watch how Hig was drawn"
+      }
+    }
+  },
   "webtoon": [
     {
       "key": "award",
@@ -389,6 +440,8 @@ window.R = {
       "instagramDescription": "인스타그램 메시지로 연락해 주세요.",
       "instagramContact": "인스타그램으로 연락하기 ↗",
       "zoom": "그림 크게 보기",
+      "pause": "멈춤",
+      "play": "재생",
       "close": "닫기 ×",
       "emailCopied": "이메일 주소를 복사했습니다."
     },
@@ -432,6 +485,8 @@ window.R = {
       "instagramDescription": "Send me a message on Instagram.",
       "instagramContact": "Message me on Instagram ↗",
       "zoom": "View the artwork",
+      "pause": "Pause",
+      "play": "Play",
       "close": "Close ×",
       "emailCopied": "Email address copied."
     }

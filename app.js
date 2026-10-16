@@ -48,10 +48,11 @@ function applyLanguage(next) {
     card.setAttribute('role', 'group'); card.setAttribute('aria-roledescription', 'slide');
     card.setAttribute('aria-label', `${k + 1} / ${cards.length} · ${names()[k]}`);
   });
-  const coverArt = lang === 'en'
-    ? [['assets/gatekeeper-step-05.webp','Gatekeeper, finished artwork'],['assets/agni-step-05.webp','Agni, finished artwork'],['assets/hig-video-poster.jpg','Hig, finished artwork']]
-    : [['assets/gatekeeper-step-05.webp','문지기 완성 원화'],['assets/agni-step-05.webp','아그니 완성 원화'],['assets/hig-video-poster.jpg','히그 완성 원화']];
-  $('#c1art').innerHTML = coverArt.map(([src, alt]) => paper(src, alt)).join('');
+  // 표지 원화: 누르면 그린 과정(단계 그림 또는 타임랩스)을 확대 창에서 재생
+  $('#c1art').innerHTML = Object.values(C.process).map(p => paper(p.thumb, loc(p, 'alt'), {
+    aria: loc(p, 'open'),
+    data: p.steps ? { steps: p.steps.join(' '), caption: loc(p, 'caption') } : { video: p.video, poster: p.poster, caption: loc(p, 'caption') },
+  })).join('');
   $('#milestones').innerHTML = C.webtoon.map(item => `<li><b>${h(item.big)}${item.key === 'langs' ? `<small>${h(loc(item, 'cap'))}</small>` : ''}</b><div><h3>${h(loc(item, 't'))}</h3><p>${h(loc(item, 'd'))}</p></div></li>`).join('');
   $('#editions').innerHTML = C.editions.map(edition => `<div class="edition" data-edition="${h(edition.k)}">
     ${paper(edition.img, lang === 'en' ? edition.enAlt : edition.alt, {pos:edition.pos || '50% 0'})}
@@ -76,6 +77,7 @@ function applyLanguage(next) {
   }
   $('#contact-status').textContent = '';
   $('.lb').setAttribute('aria-label', ui('zoom'));
+  Object.assign(LB, { zoom: ui('zoom'), pause: ui('pause'), play: ui('play') });
   $('.lb-close').textContent = ui('close');
   $('#now').textContent = names()[Number(document.body.dataset.card) || 0];
   try { localStorage.setItem('keon-resume-language', lang); } catch {}
