@@ -63,7 +63,9 @@ function applyLanguage(next) {
   $('#history').innerHTML = C.before.map(item => `<li><span class="yr">${h(item.yr)}</span><span class="t">${h(loc(item, 't'))}${loc(item, 's') ? `<small>${h(loc(item, 's'))}</small>` : ''}</span></li>`).join('');
   $('#before-range').textContent = span(C.before);
   const readUrl = lang === 'en' ? C.editions.find(edition => edition.k === 'EN').url : C.naver;
-  external($('#read-cover'), readUrl); external($('#read-contact'), readUrl);
+  external($('#read-cover'), readUrl);
+  // 연락처 저장: 같은 사이트의 vCard 파일. download 지정이 없어야 아이폰이 연락처 미리보기를 연다
+  $('#save-contact').href = C.vcard[lang];
   external($('#follow-cover'), C.insta);
   external($('#instagram-footer'), C.insta, C.instaId);
   if (C.email) {

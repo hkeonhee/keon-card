@@ -400,6 +400,10 @@ window.R = {
     }
   ],
   "email": "didyou89@naver.com",
+  "vcard": {
+    "ko": "assets/keon-ko.vcf",
+    "en": "assets/keon-en.vcf"
+  },
   "i18n": {
     "ko": {
       "title": "한건희 KEON — 웹툰 작가",
@@ -427,7 +431,7 @@ window.R = {
       "thanks": "끝까지 넘겨 주셔서 고맙습니다.",
       "contactTitle": "연재·협업 제안을<br>기다립니다.",
       "copyEmail": "이메일 복사",
-      "readMore": "〈보이드맨〉 보기 ↗",
+      "saveContact": "연락처 저장",
       "swipeHint": "옆으로 넘겨 보세요 →",
       "desktopHint": "휠이나 ← → 키로 넘겨 보세요",
       "previous": "이전 장",
@@ -472,7 +476,7 @@ window.R = {
       "thanks": "Thank you for turning to the last card.",
       "contactTitle": "Open to new series<br>and collaborations.",
       "copyEmail": "Copy email",
-      "readMore": "Read Void Man ↗",
+      "saveContact": "Save contact",
       "swipeHint": "Swipe to turn the card →",
       "desktopHint": "Scroll or press ← → to turn",
       "previous": "Previous card",
