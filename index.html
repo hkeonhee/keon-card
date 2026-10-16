@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#efefed">
+  <meta name="description" content="웹툰 작가 한건희(KEON). 보이드맨 글·그림, 2022 네이버웹툰 지상최대공모전 대상. VIRTICAL·TOONMILL 대표.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="한건희 KEON — 웹툰 작가">
+  <meta property="og:description" content="보이드맨을 쓰고 그립니다. 작가를 위한 도구와 앱도 직접 만듭니다.">
+  <meta property="og:url" content="https://hkeonhee.github.io/keon-card/">
+  <meta property="og:image" content="https://hkeonhee.github.io/keon-card/assets/void-cover-01.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>한건희 KEON — 웹툰 작가</title>
+  <link rel="icon" href="assets/virtical-symbol.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=74721989c0b2">
+  <script src="content.js?v=9e41396e6161" defer></script>
+  <script src="deck.js?v=9d6cbbaf6af2" defer></script>
+  <script src="app.js?v=6d0aa2254d29" defer></script>
+</head>
+<body data-card="0">
+  <div class="app">
+    <header class="bar">
+      <a class="logo" href="#cover" aria-label="처음으로" data-i18n-aria="backCover">KEON</a>
+      <nav class="chapters" id="chapters" aria-label="장 이동" data-i18n-aria="chapterNav"></nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ko" lang="ko" aria-label="한국어" aria-pressed="true">KO</button><span aria-hidden="true">/</span><button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+      </div>
+    </header>
+    <main class="stage" role="region" aria-roledescription="carousel" aria-label="한건희 이력" data-i18n-aria="carousel">
+      <div class="deck-track" id="track">
+        <section class="card c1" id="cover">
+          <div class="cover-copy">
+            <p class="onair"><i aria-hidden="true"></i><span data-i18n="onAir">매주 화요일, 네이버웹툰 연재 중</span></p>
+            <p class="big" aria-hidden="true">KEON</p>
+            <h1 class="who" data-i18n="who">웹툰 작가 한건희</h1>
+            <p class="line" data-i18n-html="intro">웹툰 〈보이드맨〉을 쓰고 그립니다.<br>작가를 위한 도구와 앱도 직접 만들어요.</p>
+            <p class="stamps"><span class="stamp" data-i18n="virticalRole">VIRTICAL 대표</span><span class="stamp" data-i18n="toonmillRole">TOONMILL 대표</span></p>
+            <div class="cta"><a class="pill" id="read-cover" data-i18n="readVoid">〈보이드맨〉 보기 ↗</a><a class="ghost" id="follow-cover" data-i18n="follow">작가 팔로우 ↗</a></div>
+          </div>
+          <div class="c1-art" id="c1art"></div>
+        </section>
+        <section class="card c2" id="webtoon">
+          <div class="c-head"><h2 class="h2" data-i18n="webtoon">웹툰 작가</h2><p class="sub" data-i18n="workCredit">〈보이드맨〉 글·그림</p></div>
+          <ol class="ms" id="milestones"></ol>
+          <nav class="eds" id="editions" aria-label="보이드맨 공식 연재" data-i18n-aria="editions"></nav>
+        </section>
+        <section class="card c-services" id="services">
+          <div class="services-head">
+            <div class="c-head"><h2 class="h2" data-i18n="services">직접 만든 서비스</h2><p class="sub" data-i18n="servicesHint">아래로 스크롤 ↓</p></div>
+            <nav class="service-jumps" aria-label="서비스 바로가기" data-i18n-aria="serviceNav"><a href="#toonmill">01 <b>ToonMill</b></a><a href="#byeolbyeoljeom">02 <b data-i18n="byeolName">별별점</b></a></nav>
+          </div>
+          <div class="services-scroll" tabindex="0" role="region" aria-label="툰밀과 별별점, 세로로 스크롤" data-i18n-aria="serviceScroll">
+            <article class="service-panel c-ink" id="toonmill" aria-labelledby="toonmill-name">
+              <p class="svc-k"><span data-i18n="launched">직접 만들어 서비스한 것</span><b>01 / 02</b></p>
+              <div class="vis" id="toonmill-art"></div>
+              <div class="txt" id="toonmill-copy"></div>
+            </article>
+            <article class="service-panel" id="byeolbyeoljeom" aria-labelledby="byeol-name">
+              <p class="svc-k"><span data-i18n="launched">직접 만들어 서비스한 것</span><b>02 / 02</b></p>
+              <div class="vis" id="byeol-art"></div>
+              <div class="txt" id="byeol-copy"></div>
+            </article>
+          </div>
+        </section>
+        <section class="card c6" id="before">
+          <div class="c-head"><h2 class="h2" data-i18n="before">그 전의 이야기</h2><p class="sub" id="before-range"></p></div>
+          <ol class="pre" id="history"></ol>
+          <p class="hand end" data-i18n="beforeEnd">그리고, 웹툰 작가가 되었습니다.</p>
+        </section>
+        <section class="card c7" id="contact">
+          <p class="contact-wordmark" aria-hidden="true">KEON</p>
+          <p class="hand" data-i18n="thanks">명함 뒷면, 끝까지 봐 주셔서 고마워요!</p>
+          <h2 class="c7-h" data-i18n-html="contactTitle">연재·협업 제안은<br>언제든 반가워요.</h2>
+          <p class="c7-p" id="contact-description"></p>
+          <div class="cta"><a class="pill" id="contact-link"></a><button class="ghost" type="button" id="copy-email" hidden data-i18n="copyEmail">이메일 복사</button><a class="ghost" id="read-contact" data-i18n="readMore">웹툰 보러가기 ↗</a></div>
+          <p class="contact-status" id="contact-status" role="status"></p>
+          <p class="c7-foot">VIRTICAL · TOONMILL © <span id="year">2026</span> · Instagram <a id="instagram-footer"></a></p>
+          <div class="contact-ink" aria-hidden="true"></div>
+        </section>
+      </div>
+    </main>
+    <footer class="nav">
+      <button type="button" class="deck-prev" aria-label="이전 장" data-i18n-aria="previous"></button>
+      <p class="now"><span class="deck-count" aria-live="polite" aria-atomic="true"></span><b id="now"></b><span class="hand hint" aria-hidden="true"><span class="t" data-i18n="swipeHint">옆으로 밀어서 넘겨 보세요 →</span><span class="k" data-i18n="desktopHint">휠이나 ← → 키로도 넘겨요</span></span></p>
+      <button type="button" class="deck-next" aria-label="다음 장" data-i18n-aria="next"></button>
+    </footer>
+  </div>
+  <noscript><p class="no-script">한건희 / KEON — 보이드맨 글·그림, VIRTICAL·TOONMILL 대표. <a href="https://m.comic.naver.com/webtoon/list?titleId=827173&week=tue">보이드맨 보기</a> · <a href="mailto:didyou89@naver.com">이메일 연락</a></p></noscript>
+</body>
+</html>
