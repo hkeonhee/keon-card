@@ -311,45 +311,6 @@ window.R = {
   ],
   "before": [
     {
-      "yr": "2026—",
-      "t": "TOONMILL 대표",
-      "s": "툰밀·별별점 기획·개발",
-      "key": "toonmill",
-      "en": {
-        "t": "CEO, TOONMILL",
-        "s": "Plans and develops ToonMill and AstraSeer"
-      }
-    },
-    {
-      "yr": "2024—",
-      "t": "네이버웹툰 〈보이드맨〉 연재",
-      "s": "화요웹툰 · 영어·프랑스어·번체중문·일본어 공식판",
-      "key": "void-man",
-      "en": {
-        "t": "Void Man serialized on NAVER WEBTOON",
-        "s": "Every Tuesday · official editions in English, French, Traditional Chinese and Japanese"
-      }
-    },
-    {
-      "yr": "2024—",
-      "t": "VIRTICAL 대표",
-      "key": "virtical",
-      "en": {
-        "t": "CEO, VIRTICAL",
-        "s": ""
-      }
-    },
-    {
-      "yr": "2022",
-      "t": "네이버웹툰 지상최대공모전 대상",
-      "s": "〈보이드맨〉",
-      "key": "award",
-      "en": {
-        "t": "Grand Prize, NAVER WEBTOON Contest",
-        "s": "Void Man"
-      }
-    },
-    {
       "yr": "2017—18",
       "t": "APEX SOFT",
       "s": "UI/UX 디자인 · 웹 퍼블리싱",
@@ -466,7 +427,8 @@ window.R = {
       "servicesHint": "아래로 넘겨 보세요 ↓",
       "serviceNav": "프로젝트 바로가기",
       "serviceScroll": "툰밀과 별별점, 세로로 스크롤",
-      "before": "이력",
+      "before": "그 전의 이야기",
+      "beforeEnd": "그리고, 웹툰 작가가 되었습니다.",
       "thanks": "끝까지 넘겨 주셔서 고맙습니다.",
       "contactTitle": "연재·협업 제안을<br>기다립니다.",
       "copyEmail": "이메일 복사",
@@ -510,7 +472,8 @@ window.R = {
       "servicesHint": "Scroll down ↓",
       "serviceNav": "Jump to a project",
       "serviceScroll": "ToonMill and AstraSeer, scroll vertically",
-      "before": "Career",
+      "before": "Before webtoons",
+      "beforeEnd": "And then, I became a webtoon artist.",
       "thanks": "Thank you for turning to the last card.",
       "contactTitle": "Open to new series<br>and collaborations.",
       "copyEmail": "Copy email",
