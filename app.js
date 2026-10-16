@@ -9,7 +9,7 @@ if (requestedLang === 'en') lang = 'en';
 const loc = (item, key) => lang === 'en' && item.en?.[key] !== undefined ? item.en[key] : item[key];
 const ui = (key) => C.i18n[lang][key];
 const sectionIds = cards.map(card => card.id);
-const names = () => [ui('cover'), ui('webtoon'), ui('services'), ui('before'), ui('contact')];
+const names = () => [ui('cover'), ui('webtoon'), ui('services'), ui('before'), ui('note'), ui('contact')];
 $('#chapters').innerHTML = sectionIds.map((id, k) => `<button type="button" data-go="${k}"><span class="seg"></span><span class="lbl"></span></button>`).join('');
 $('.deck-prev').innerHTML = ARROW('prev');
 $('.deck-next').innerHTML = ARROW('next');
@@ -39,6 +39,7 @@ function applyLanguage(next) {
   document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = ui(el.dataset.i18n));
   document.querySelectorAll('[data-i18n-html]').forEach(el => el.innerHTML = ui(el.dataset.i18nHtml));
   document.querySelectorAll('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', ui(el.dataset.i18nAria)));
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => { el.alt = ui(el.dataset.i18nAlt); });
   document.querySelectorAll('[data-lang]').forEach(el => el.setAttribute('aria-pressed', String(el.dataset.lang === lang)));
   document.querySelectorAll('#chapters [data-go]').forEach((el, k) => {
     el.querySelector('.lbl').textContent = names()[k];
