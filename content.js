@@ -159,8 +159,9 @@ window.R = {
       "lang": "한국어",
       "p": "네이버웹툰",
       "url": "https://m.comic.naver.com/webtoon/list?titleId=827173&week=tue",
-      "img": "assets/resume/hero-cover.webp",
-      "alt": "네이버웹툰 〈보이드맨〉 표지",
+      "img": "assets/resume/void-ko-thumb.webp",
+      "pos": "60% 0",
+      "alt": "네이버웹툰 〈보이드맨〉 썸네일",
       "enAlt": "Void Man official Korean edition",
       "en": {
         "p": "NAVER WEBTOON"
