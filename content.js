@@ -67,7 +67,7 @@ window.R = {
   },
   "process": {
     "gatekeeper": {
-      "thumb": "assets/gatekeeper-step-05.webp",
+      "thumb": "assets/gatekeeper-thumb.webp",
       "alt": "문지기 완성 원화",
       "caption": "문지기를 그린 과정",
       "open": "문지기를 그린 과정 보기",
@@ -85,7 +85,7 @@ window.R = {
       }
     },
     "agni": {
-      "thumb": "assets/agni-step-05.webp",
+      "thumb": "assets/agni-thumb.webp",
       "alt": "아그니 완성 원화",
       "caption": "아그니를 그린 과정",
       "open": "아그니를 그린 과정 보기",
@@ -103,7 +103,7 @@ window.R = {
       }
     },
     "hig": {
-      "thumb": "assets/hig-video-poster.jpg",
+      "thumb": "assets/hig-thumb.webp",
       "alt": "히그 완성 원화",
       "caption": "히그를 그린 과정",
       "open": "히그를 그린 과정 보기",
@@ -173,7 +173,7 @@ window.R = {
       "lang": "English",
       "p": "WEBTOON",
       "url": "https://www.webtoons.com/en/action/void-man/list?title_no=7005",
-      "img": "assets/resume/global-na.webp",
+      "img": "assets/resume/ed-en.webp",
       "alt": "WEBTOON 영어판 화면",
       "enAlt": "Void Man official English edition",
       "en": {
@@ -185,7 +185,7 @@ window.R = {
       "lang": "Français",
       "p": "WEBTOON",
       "url": "https://www.webtoons.com/fr/action/void-man/list?title_no=7083",
-      "img": "assets/resume/global-fr.webp",
+      "img": "assets/resume/ed-fr.webp",
       "alt": "WEBTOON 프랑스어판 화면",
       "enAlt": "Void Man official French edition",
       "en": {
@@ -197,7 +197,8 @@ window.R = {
       "lang": "繁體中文",
       "p": "WEBTOON",
       "url": "https://www.webtoons.com/zh-hant/action/voidman/list?title_no=7092",
-      "img": "assets/resume/global-tw.webp",
+      "img": "assets/resume/ed-zh.webp",
+      "pos": "82% 0",
       "alt": "WEBTOON 번체중문판 화면",
       "enAlt": "Void Man official Traditional Chinese edition",
       "en": {
@@ -209,7 +210,7 @@ window.R = {
       "lang": "日本語",
       "p": "LINEマンガ",
       "url": "https://manga.line.me/product/periodic?id=Z0003613",
-      "img": "assets/resume/global-jp.webp",
+      "img": "assets/resume/ed-ja.webp",
       "alt": "LINEマンガ 일본어판 화면",
       "enAlt": "Void Man official Japanese edition",
       "en": {
@@ -223,7 +224,7 @@ window.R = {
       "name": "툰밀",
       "en": {
         "name": "ToonMill",
-        "yr": "Now",
+        "yr": "2026",
         "status": "Live",
         "t": "AI production tools for webtoon artists",
         "d": "From character sheets and poses to line art, flat colors, layered PSD shading and background finishing: twelve tools that take a webtoon panel from start to finish. I lead both planning and development.",
@@ -234,7 +235,7 @@ window.R = {
           "ToonMill workspace"
         ]
       },
-      "yr": "현재",
+      "yr": "2026",
       "status": "운영 중",
       "t": "웹툰 작가를 위한 AI 제작 도구",
       "d": "캐릭터 시트와 포즈부터 선화·밑색·명암 레이어(PSD), 배경 후보정까지. 웹툰 한 컷이 완성되는 과정을 12가지 도구로 잇습니다. 기획과 개발을 모두 맡고 있습니다.",

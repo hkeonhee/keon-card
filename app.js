@@ -22,8 +22,8 @@ function external(el, url, text) {
 function renderService(key, artId, textId) {
   const p = C.launched.find(project => project.key === key);
   $(artId).innerHTML = key === 'tm'
-    ? `<p class="wm" aria-hidden="true">TOON<br>MILL<i>.</i></p><div class="tm-prints">${p.imgs.map(([src, alt], k) => paper(src, lang === 'en' ? p.en.alts[k] : alt, { pos: '50% 0' })).join('')}</div>`
-    : `<p class="wm" aria-hidden="true">ASTRA<br>SEER<i>.</i></p><div class="fan">${p.imgs.map(([src, alt], k) => paper(src, lang === 'en' ? p.en.alts[k] : alt)).join('')}</div>`;
+    ? `<p class="wm" aria-hidden="true">TOON<br>MILL<i>.</i></p><div class="tm-prints">${p.imgs.map(([src, alt], k) => paper(src, lang === 'en' ? p.en.alts[k] : alt, { pos: '50% 0', lazy: true })).join('')}</div>`
+    : `<p class="wm" aria-hidden="true">ASTRA<br>SEER<i>.</i></p><div class="fan">${p.imgs.map(([src, alt], k) => paper(src, lang === 'en' ? p.en.alts[k] : alt, { lazy: true })).join('')}</div>`;
   $(textId).innerHTML = `<div class="svc-top"><h3 id="${key === 'tm' ? 'toonmill-name' : 'byeol-name'}">${h(loc(p, 'name'))}</h3><span class="status${key === 'bb' ? ' hot' : ''}">${h(loc(p, 'status'))}</span></div>
     <p class="service-title">${h(loc(p, 't'))}</p><p class="d">${h(loc(p, 'd'))}</p>
     <p class="meta"><b>${h(loc(p, 'yr'))}</b> ${h(loc(p, 'role'))}</p>
@@ -56,7 +56,7 @@ function applyLanguage(next) {
   })).join('');
   $('#milestones').innerHTML = C.webtoon.map(item => `<li><b>${h(item.big)}${item.key === 'langs' ? `<small>${h(loc(item, 'cap'))}</small>` : ''}</b><div><h3>${h(loc(item, 't'))}</h3><p>${h(loc(item, 'd'))}</p></div></li>`).join('');
   $('#editions').innerHTML = C.editions.map(edition => `<div class="edition" data-edition="${h(edition.k)}">
-    ${paper(edition.img, lang === 'en' ? edition.enAlt : edition.alt, {pos:edition.pos || '50% 0'})}
+    ${paper(edition.img, lang === 'en' ? edition.enAlt : edition.alt, {pos:edition.pos || '50% 0', lazy:true})}
     <a ${ext(edition.url)} aria-label="${h(edition.lang)} · ${h(loc(edition, 'p'))} · VOID MAN"><span class="edition-lang"><b>${h(edition.k)}</b><span aria-hidden="true">↗</span></span><span class="edition-platform">${h(loc(edition, 'p'))}</span></a>
   </div>`).join('');
   renderService('tm', '#toonmill-art', '#toonmill-copy');
@@ -68,15 +68,15 @@ function applyLanguage(next) {
   // 연락처 저장: 같은 사이트의 vCard 파일. download 지정이 없어야 아이폰이 연락처 미리보기를 연다
   $('#save-contact').href = C.vcard[lang];
   external($('#follow-cover'), C.insta);
-  external($('#instagram-footer'), C.insta, C.instaId);
+  external($('#contact-insta'), C.insta);
   if (C.email) {
     $('#contact-description').textContent = C.email;
     $('#contact-link').href = `mailto:${C.email}?subject=${encodeURIComponent(ui('emailSubject'))}`;
     $('#contact-link').removeAttribute('target'); $('#contact-link').removeAttribute('rel');
-    $('#contact-link').textContent = ui('emailContact'); $('#copy-email').hidden = false;
+    $('#contact-link').textContent = ui('emailContact'); $('#copy-email').hidden = false; $('#contact-insta').hidden = false;
   } else {
     $('#contact-description').textContent = ui('instagramDescription');
-    external($('#contact-link'), C.insta, ui('instagramContact')); $('#copy-email').hidden = true;
+    external($('#contact-link'), C.insta, ui('instagramContact')); $('#copy-email').hidden = true; $('#contact-insta').hidden = true;
   }
   $('#contact-status').textContent = '';
   $('.lb').setAttribute('aria-label', ui('zoom'));
@@ -84,9 +84,17 @@ function applyLanguage(next) {
   $('.lb-close').textContent = ui('close');
   $('#now').textContent = names()[Number(document.body.dataset.card) || 0];
   try { localStorage.setItem('keon-resume-language', lang); } catch {}
+  wake(Number(document.body.dataset.card) || 0);
   markMore();
 }
 const markMore = () => cards.forEach(card => card.classList.toggle('more-below', card.scrollHeight - card.clientHeight - card.scrollTop > 2));
+// 처음 열 때 받는 양을 줄이려고, 그림은 보이는 장과 그 앞뒤 장만 받음(.woke: 연락 장 먹 그림도 이때)
+const wake = (n) => cards.forEach((card, k) => {
+  if (Math.abs(k - n) > 1) return;
+  card.classList.add('woke');
+  card.querySelectorAll('img[data-src]').forEach(img => { img.addEventListener('load', markMore, {once:true}); img.src = img.dataset.src; img.removeAttribute('data-src'); });
+  card.querySelectorAll('source[data-srcset]').forEach(source => { source.srcset = source.dataset.srcset; source.removeAttribute('data-srcset'); });
+});
 applyLanguage(lang);
 
 const d = deck(document.body, {
@@ -95,6 +103,7 @@ const d = deck(document.body, {
     document.querySelectorAll('#chapters [data-go]').forEach((button, k) => button.classList.toggle('done', k < n));
     cards.forEach((card, k) => { card.inert = k !== n; });
     $('#now').textContent = names()[n];
+    wake(n);
     markMore();
   }
 });

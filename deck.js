@@ -4,8 +4,10 @@ window.ext = (url) => `href="${h(url)}" target="_blank" rel="noopener noreferrer
 window.STAR = '<svg class="star" viewBox="0 0 130 130" aria-hidden="true"><path d="M64 8L69 48L99 20L79 57L121 52L83 69L111 99L74 80L80 122L62 83L33 110L49 74L8 79L46 61L18 32L56 48Z"/></svg>';
 // 그림 종이 한 장(누르면 크게 보기). window.print는 브라우저 인쇄라 이름을 paper로 씀
 // data: 버튼에 붙일 data-* 값(steps, video, poster, caption이면 확대 창이 그린 과정을 재생), aria: 버튼 이름
-window.paper = (src, alt, { cls = '', label = '', pos = '', full = src, data = {}, aria = '' } = {}) =>
-  `<button type="button" class="print sheet ${cls}" data-full="${h(full)}"${Object.entries(data).map(([k, v]) => ` data-${k}="${h(v)}"`).join('')}${aria ? ` aria-label="${h(aria)}"` : ''}><span class="pic"><img src="${h(src)}" alt="${h(alt)}"${pos ? ` style="object-position:${h(pos)}"` : ''}></span>${label ? `<span class="label">${h(label)}</span>` : ''}</button>`;
+// lazy: 처음에는 1px 자리 그림, 실제 주소는 data-src(그 장 가까이 가면 app.js가 넣음)
+window.PIX = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+window.paper = (src, alt, { cls = '', label = '', pos = '', full = src, data = {}, aria = '', lazy = false } = {}) =>
+  `<button type="button" class="print sheet ${cls}" data-full="${h(full)}"${Object.entries(data).map(([k, v]) => ` data-${k}="${h(v)}"`).join('')}${aria ? ` aria-label="${h(aria)}"` : ''}><span class="pic"><img src="${lazy ? PIX : h(src)}"${lazy ? ` data-src="${h(src)}"` : ''} alt="${h(alt)}"${pos ? ` style="object-position:${h(pos)}"` : ''}></span>${label ? `<span class="label">${h(label)}</span>` : ''}</button>`;
 
 // 확대 창. 보통은 그림 한 장. 누른 그림에 data-steps(단계 그림 목록)나 data-video가 있으면 그린 과정을 재생.
 // 단계 그림은 앞 단계 위에 다음 단계가 겹쳐 나타나고(각 1초, 완성본에서 2.5초 뒤 처음부터), 영상은 소리 없이 반복.
@@ -24,8 +26,9 @@ window.LB = { zoom: '그림 크게 보기', pause: '멈춤', play: '재생' };
   let opener = null, run = null;
   const label = () => { toggle.textContent = run && run.playing() ? LB.pause : LB.play; };
 
-  function steps(list) {
-    stage.innerHTML = list.map((src) => `<img src="${h(src)}" alt="">`).join('');
+  // first: 표지에서 이미 받은 작은 완성본. 큰 완성본이 도착할 때까지 마지막 장면 자리에 보여 줌
+  function steps(list, first) {
+    stage.innerHTML = list.map((src, k) => `<img src="${h(k === list.length - 1 && first ? first : src)}" alt="">`).join('');
     bar.innerHTML = list.map(() => '<i></i>').join('');
     const frames = [...stage.children], segs = [...bar.children], last = frames.length - 1;
     let at = last, timer = 0, on = false;
@@ -43,7 +46,8 @@ window.LB = { zoom: '그림 크게 보기', pause: '멈춤', play: '재생' };
       playing: () => on,
       stop() { clearTimeout(timer); on = false; },
     };
-    // 완성본(표지에서 이미 받은 그림)을 보여 주는 동안 나머지 단계를 받고 나서 처음부터 시작
+    if (first && first !== list[last]) { const big = new Image(); big.onload = () => { if (run === r) frames[last].src = list[last]; }; big.src = list[last]; }
+    // 완성본(표지에서 받은 작은 그림)을 보여 주는 동안 나머지 단계를 받고 나서 처음부터 시작
     if (!still()) Promise.all(frames.map((f) => f.decode().catch(() => {}))).then(() => { if (run === r) r.play(); });
     return r;
   }
@@ -77,7 +81,8 @@ window.LB = { zoom: '그림 크게 보기', pause: '멈춤', play: '재생' };
     lb.setAttribute('aria-label', process && d.caption ? d.caption : LB.zoom);
     if (process) {
       cap.textContent = d.caption || '';
-      run = d.steps ? steps(d.steps.split(' ')) : video(d.video, d.poster || '');
+      const thumb = t.querySelector('img');
+      run = d.steps ? steps(d.steps.split(' '), thumb && thumb.getAttribute('src')) : video(d.video, d.poster || '');
       label();
     } else {
       img.src = d.full;
