@@ -11,7 +11,7 @@ window.R = {
   ],
   "line": [
     "〈보이드맨〉을 쓰고 그립니다.",
-    "웹툰 밖에서는 AI 도구와 웹 서비스를 만듭니다."
+    "웹툰 밖에서는 AI 도구와 앱을 만듭니다."
   ],
   "logline": "신들이 지배하는 포스트 아포칼립스.",
   "naver": "https://m.comic.naver.com/webtoon/list?titleId=827173&week=tue",
@@ -409,7 +409,7 @@ window.R = {
       "carousel": "한건희 이력",
       "onAir": "매주 화요일, 네이버웹툰 연재 중",
       "who": "웹툰 작가 한건희",
-      "intro": "〈보이드맨〉을 쓰고 그립니다.<br>웹툰 밖에서는 AI 도구와 웹 서비스를 만듭니다.",
+      "intro": "〈보이드맨〉을 쓰고 그립니다.<br>웹툰 밖에서는 AI 도구와 앱을 만듭니다.",
       "virticalRole": "VIRTICAL 대표",
       "toonmillRole": "TOONMILL 대표",
       "readVoid": "〈보이드맨〉 보기 ↗",
@@ -454,7 +454,7 @@ window.R = {
       "carousel": "Han Keon Hee’s profile",
       "onAir": "New Korean episodes every Tuesday",
       "who": "Han Keon Hee, webtoon artist",
-      "intro": "I write and draw <em>Void Man</em>.<br>Beyond the webtoon, I build AI tools and web services.",
+      "intro": "I write and draw <em>Void Man</em>.<br>Beyond the webtoon, I build AI tools and apps.",
       "virticalRole": "VIRTICAL CEO",
       "toonmillRole": "TOONMILL CEO",
       "readVoid": "Read Void Man ↗",
