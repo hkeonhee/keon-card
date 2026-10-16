@@ -23,7 +23,7 @@ function renderService(key, artId, textId) {
   const p = C.launched.find(project => project.key === key);
   $(artId).innerHTML = key === 'tm'
     ? `<p class="wm" aria-hidden="true">TOON<br>MILL<i>.</i></p><div class="tm-prints">${p.imgs.map(([src, alt], k) => paper(src, lang === 'en' ? p.en.alts[k] : alt, { pos: '50% 0' })).join('')}</div>`
-    : `<p class="wm bb-wm" aria-hidden="true">BYEOL<br>BYEOLJEOM<i>.</i></p><div class="fan">${p.imgs.map(([src, alt], k) => paper(src, lang === 'en' ? p.en.alts[k] : alt)).join('')}</div>`;
+    : `<p class="wm" aria-hidden="true">ASTRA<br>SEER<i>.</i></p><div class="fan">${p.imgs.map(([src, alt], k) => paper(src, lang === 'en' ? p.en.alts[k] : alt)).join('')}</div>`;
   $(textId).innerHTML = `<div class="svc-top"><h3 id="${key === 'tm' ? 'toonmill-name' : 'byeol-name'}">${h(loc(p, 'name'))}</h3><span class="status${key === 'bb' ? ' hot' : ''}">${h(loc(p, 'status'))}</span></div>
     <p class="service-title">${h(loc(p, 't'))}</p><p class="d">${h(loc(p, 'd'))}</p>
     <p class="meta"><b>${h(loc(p, 'yr'))}</b> ${h(loc(p, 'role'))}</p>
