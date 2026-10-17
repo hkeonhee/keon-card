@@ -103,6 +103,7 @@ const d = deck(document.body, {
     document.querySelectorAll('#chapters [data-go]').forEach((button, k) => button.classList.toggle('done', k < n));
     cards.forEach((card, k) => { card.inert = k !== n; });
     $('#now').textContent = names()[n];
+    if (n) document.documentElement.classList.remove('intro-done');
     wake(n);
     markMore();
   }
@@ -116,6 +117,81 @@ function goToHash() {
 }
 goToHash();
 addEventListener('hashchange', goToHash);
+// 첫 방문(2026-10-17): 공유 그림처럼 원화가 화면을 채운 포스터로 열고, 원화는 표지 그림 띠로 내려가며 KEON은 표지 KEON 자리로 올라감.
+// <head>의 한 줄이 html.intro-wait를 붙인 경우만 돈다(주소에 #이 없고, 움직임 줄이기가 꺼져 있고, 이 창에서 처음).
+// 그림·글꼴이 1.5초 안에 준비되지 않으면 건너뛰고, 누르거나 키·휠을 쓰면 바로 끝 모습으로 간다(그 누름은 아래 표지 그림을 열지 않음).
+(() => {
+  const root = document.documentElement;
+  if (!root.classList.contains('intro-wait')) return;
+  try { sessionStorage.setItem('keon-intro', '1'); } catch {}
+  const cover = $('#cover'), big = cover.querySelector('.big'), strip = $('#c1art');
+  const o = document.createElement('div');
+  o.className = 'intro';
+  o.setAttribute('aria-hidden', 'true');
+  o.innerHTML = `<div class="intro-art">${[...strip.querySelectorAll('img')].map(img => `<img alt="" src="${h(img.getAttribute('src'))}">`).join('')}</div><div class="intro-shade"></div>`;
+  const art = o.firstChild;
+  // KEON은 표지와 같은 글씨(.big)를 복제해 표지 KEON 자리에 두고, 처음에는 화면 가운데로 옮겨 둔다
+  const mark = document.createElement('p');
+  mark.className = 'big intro-mark';
+  mark.setAttribute('aria-hidden', 'true');
+  mark.textContent = big.textContent;
+  art.style.opacity = 0; mark.style.opacity = 0;
+  document.body.append(o, mark);
+  let state = 'wait', anims = [];
+  const done = (keep) => {
+    if (state === 'gone') return;
+    if (state === 'run') {
+      root.classList.add('intro-done');
+      cover.getAnimations({ subtree: true }).forEach(a => { if (a.effect.getComputedTiming().endTime !== Infinity) a.finish(); });
+    }
+    state = 'gone';
+    clearTimeout(timer);
+    anims.forEach(a => a.cancel());
+    mark.remove();
+    root.classList.remove('intro-wait', 'intro-run');
+    removeEventListener('keydown', skip, true); removeEventListener('wheel', skip, true); removeEventListener('resize', skip);
+    if (!keep) { o.remove(); return; }
+    // 누른 손가락의 click을 덮개가 받아 버린 뒤 치움
+    o.style.opacity = 0;
+    o.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); o.remove(); }, { once: true });
+    setTimeout(() => o.remove(), 700);
+  };
+  const skip = () => done(false);
+  const begin = () => {
+    if (state !== 'wait') return;
+    state = 'run';
+    clearTimeout(timer);   // 준비를 기다리는 시간 제한은 시작하면 끝(남겨 두면 첫 등장이 중간에 끊김)
+    root.classList.replace('intro-wait', 'intro-run');
+    // 표지 글씨 등장을 이 순간부터 다시(지연값은 intro-run 규칙), 장 전환 효과 없이
+    cover.style.transition = 'none'; cover.classList.remove('is-on'); void cover.offsetWidth; cover.classList.add('is-on'); void cover.offsetWidth; cover.style.transition = '';
+    const k = big.getBoundingClientRect();
+    Object.assign(mark.style, { left: `${k.left}px`, top: `${k.top}px`, width: `${k.width}px`, opacity: '' });
+    art.style.opacity = '';
+    const m = mark.getBoundingClientRect(), r = strip.getBoundingClientRect();
+    const dx = innerWidth / 2 - (m.left + m.width / 2), dy = innerHeight / 2 - (m.top + m.height / 2);
+    const ease = 'cubic-bezier(.65,0,.35,1)', T = 850, D = 900, END = T + D;
+    anims = [
+      art.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200, fill: 'both' }),
+      o.animate([{ left: '0px', top: '0px', width: `${innerWidth}px`, height: `${innerHeight}px` }, { left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px` }], { duration: D, delay: T, easing: ease, fill: 'both' }),
+      o.querySelector('.intro-shade').animate([{ opacity: 1 }, { opacity: 0 }], { duration: 700, delay: T, fill: 'both' }),
+      mark.animate([{ translate: `${dx}px ${dy}px` }, { translate: '0px 0px' }], { duration: D, delay: T, easing: ease, fill: 'both' }),
+      // 도착하면 같은 자리의 진짜 표지 KEON으로 바꾸고, 원화 덮개는 그림 띠 위에서 녹아 사라짐
+      mark.animate([{ opacity: 0 }, { opacity: 1, offset: 200 / END }, { opacity: 1, offset: 0.9995 }, { opacity: 0 }], { duration: END, fill: 'both' }),
+      big.animate([{ opacity: 0 }, { opacity: 0, offset: 0.9995 }, { opacity: 1 }], { duration: END, fill: 'both' }),
+      o.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 250, delay: END, fill: 'both' }),
+    ];
+    // 표지 그림 띠의 느린 숨쉬기와 같은 위상
+    art.querySelectorAll('img').forEach((img, i) => img.animate([{ scale: 1.14 }, { scale: 1.19 }], { duration: 18000, delay: -6000 * i, direction: 'alternate', iterations: Infinity, easing: 'ease-in-out' }));
+    Promise.all(anims.map(a => a.finished)).then(() => done(false), () => {});
+  };
+  const timer = setTimeout(skip, 1500);
+  o.addEventListener('pointerdown', e => { e.preventDefault(); done(true); });
+  addEventListener('keydown', skip, true); addEventListener('wheel', skip, { capture: true, passive: true }); addEventListener('resize', skip);
+  Promise.all([
+    ...[...art.querySelectorAll('img')].map(img => img.decode().then(() => { if (!img.naturalWidth) throw new Error('no image'); })),
+    document.fonts.load('500 100px "Cormorant Garamond"', 'KEON').then(faces => { if (!faces.length) throw new Error('no font'); }),
+  ]).then(begin, skip);
+})();
 $('.logo').addEventListener('click', event => { event.preventDefault(); d.go(0); });
 document.querySelectorAll('.service-jumps a').forEach(link => link.addEventListener('click', event => {
   event.preventDefault();
